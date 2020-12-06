@@ -51,8 +51,9 @@ build:
 	@echo "Building with..."
 	@echo "	Terraform  	     : $(TERRAFORM)"
 	@echo "	Packer     	     : $(PACKER)"
-	@echo "	Ansible    	     : $(ANSIBLE) "
-	@echo "	awscli		     : $(AWSCLI)"
+	@echo "	Ansible    	     : $(ANSIBLEV)"
+	@echo "	awscli		     : $(AWSCLIV)"
+	@echo " gcloud           : $(GCLOUD)"
 	@echo
 	@echo " home             : $(HOME)"
 	@echo " container home   : $(HOME)"
@@ -62,8 +63,9 @@ build:
 		--build-arg user=$(USER) \
 		--build-arg terraformv=$(TERRAFORM) \
 		--build-arg packerv=$(PACKER) \
-		--build-arg ansiblev=$(ANSIBLEV) \
-		--build-arg awscliv=$(AWSCLIV) \
+		--build-arg ansiblev=$(ANSIBLE) \
+		--build-arg awscliv=$(AWSCLI) \
+		--build-arg gcloudv=$(GCLOUD) \
 		--build-arg packages=$(PACKAGES) \
 		--build-arg usezsh=$(USE-ZSH) \
 		--build-arg entry=$(ENTRY) \
