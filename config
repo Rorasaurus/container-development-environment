@@ -1,7 +1,7 @@
 ####################
 # Docker vs Podman #
 ####################
-DOCKER = true
+DOCKER = false
 
 ###########################
 # Terraform configuration #

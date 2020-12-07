@@ -37,7 +37,7 @@ RUN if [ ! "${ansiblev}" == "disabled" ]; then dnf install -y ${ansiblev}; fi
 #######################
 # Install zsh and oh-my-zsh and set init user
 USER $user
-RUN if [ "$usezsh" == "true" ]; then sudo dnf install -y zsh util-linux-user; sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; echo 'eval $(ssh-agent)' >> /home/$user/.zshrc; echo "clear" >> /home/$user/.zshrc; sudo chsh -s /bin/zsh $user; else echo 'eval $(ssh-agent)' >> /home/$user/.bashrc; echo "clear" >> /home/$user/.bashrc; fi
+RUN if [ "$usezsh" == "true" ]; then sudo dnf install -y zsh util-linux-user; sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; echo 'eval $(ssh-agent)' >> /home/$user/.zshrc; sudo chsh -s /bin/zsh $user; else echo 'eval $(ssh-agent)' >> /home/$user/.bashrc; fi
 
 ###############
 # Cloud CLI's #
@@ -48,7 +48,8 @@ RUN if [ ! "${awscliv}" == "disabled" ]; then curl https://awscli.amazonaws.com/
 
 # Google Cloud CLI
 USER $user
-RUN if [ ! "${gcloudv}" == "disabled" ]; then curl https://sdk.cloud.google.com | bash; if [ "$usezsh" == "true" ]; then echo "source ~/google-cloud-sdk/path.zsh.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.zsh.inc" >> ~/.zshrc; else echo "source ~/google-cloud-sdk/path.bash.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.bash.inc" >> ~/.zshrc; fi; fi
+RUN if [ ! "${gcloudv}" == "disabled" ]; then curl https://sdk.cloud.google.com > ~/install.sh && chmod +x ~/install.sh && bash ~/install.sh --disable-prompts --install-dir=~/; if [ "$usezsh" == "true" ]; then echo "source ~/google-cloud-sdk/path.zsh.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.zsh.inc" >> ~/.zshrc; else echo "source ~/google-cloud-sdk/path.bash.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.bash.inc" >> ~/.zshrc; fi; fi && \
+    pwd
 
 # Configure working directory based upon Dockerfile directory name.
 WORKDIR /home/$user/$app

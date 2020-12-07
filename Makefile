@@ -49,21 +49,21 @@ endif
 
 build:
 	@echo "Building with..."
-	@echo "	Terraform  	     : $(TERRAFORM)"
-	@echo "	Packer     	     : $(PACKER)"
-	@echo "	Ansible    	     : $(ANSIBLEV)"
-	@echo "	awscli		     : $(AWSCLIV)"
-	@echo " gcloud           : $(GCLOUD)"
+	@echo "	Terraform		: $(TERRAFORM)"
+	@echo "	Packer			: $(PACKER)"
+	@echo "	Ansible			: $(ANSIBLEV)"
+	@echo "	awscliv			: $(AWSCLIV)"
+	@echo " gcloud			: $(GCLOUD)"
 	@echo
-	@echo " home             : $(HOME)"
-	@echo " container home   : $(HOME)"
+	@echo " home			: $(HOME)"
+	@echo " container home	: $(HOME)"
 	-@sleep 3
 	@$(RUNTIME) build \
 		--build-arg app=$(APP) \
 		--build-arg user=$(USER) \
 		--build-arg terraformv=$(TERRAFORM) \
 		--build-arg packerv=$(PACKER) \
-		--build-arg ansiblev=$(ANSIBLE) \
+		--build-arg ansiblev=$(ANSIBLEV) \
 		--build-arg awscliv=$(AWSCLI) \
 		--build-arg gcloudv=$(GCLOUD) \
 		--build-arg packages=$(PACKAGES) \
