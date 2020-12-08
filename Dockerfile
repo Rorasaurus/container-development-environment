@@ -48,6 +48,7 @@ RUN if [ ! "${awscliv}" == "disabled" ]; then curl https://awscli.amazonaws.com/
 
 # Google Cloud CLI
 USER $user
+ARG gcloudv
 RUN if [ ! "${gcloudv}" == "disabled" ]; then curl https://sdk.cloud.google.com > ~/install.sh && chmod +x ~/install.sh && bash ~/install.sh --disable-prompts --install-dir=~/; if [ "$usezsh" == "true" ]; then echo "source ~/google-cloud-sdk/path.zsh.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.zsh.inc" >> ~/.zshrc; else echo "source ~/google-cloud-sdk/path.bash.inc" >> ~/.zshrc && echo "source ~/google-cloud-sdk/completion.bash.inc" >> ~/.zshrc; fi; fi && \
     pwd
 

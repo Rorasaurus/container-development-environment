@@ -47,13 +47,20 @@ else
 AWSCLIV = awscli-exe-linux-x86_64-$(AWSCLI)
 endif
 
+# Configure gcloud - Somewhat pointless but more of a placeholder
+ifeq ($(GCLOUD), latest)
+GCLOUDV = latest
+else ifeq ($(GCLOUD), disabled)
+GCLOUDV = disabled
+endif
+
 build:
 	@echo "Building with..."
 	@echo "	Terraform		: $(TERRAFORM)"
 	@echo "	Packer			: $(PACKER)"
 	@echo "	Ansible			: $(ANSIBLEV)"
 	@echo "	awscliv			: $(AWSCLIV)"
-	@echo " gcloud			: $(GCLOUD)"
+	@echo " gcloud			: $(GCLOUDV)"
 	@echo
 	@echo " home			: $(HOME)"
 	@echo " container home	: $(HOME)"
