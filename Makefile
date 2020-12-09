@@ -82,7 +82,7 @@ build:
 		--volume $(APP_DIR):/home/$(USER)/$(APP):Z \
 		--volume $(HOST_SECRETS_DIR):$(CONTAINER_SECRETS_DIR):Z \
 		--volume $(HOST_SSH_DIR):$(CONTAINER_SSH_DIR):Z \
-		--userns=host \
+		--userns=keep-id \
 		$(IMAGE)
 
 # Delete image and container
