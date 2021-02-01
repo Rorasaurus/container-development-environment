@@ -43,6 +43,7 @@ RUN if [ "$usezsh" == "true" ]; then sudo dnf install -y zsh util-linux-user; sh
 # Cloud CLI's #
 ###############
 # AWS CLI | Latest
+USER root
 ARG awscliv
 RUN if [ ! "${awscliv}" == "disabled" ]; then curl https://awscli.amazonaws.com/${awscliv}.zip -o "awscliv2.zip"; unzip awscliv2.zip; ./aws/install; fi
 
